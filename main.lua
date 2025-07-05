@@ -7,6 +7,11 @@ local WINDOW_HEIGHT = 720
 local love = require("love")
 local push = require("push")
 
+---@type love.Image
+local background_img
+---@type love.Image
+local ground_img
+
 function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -35,5 +40,9 @@ function love.update() end
 
 function love.draw()
 	push.start()
+
+	love.graphics.draw(background_img, 0, 0)
+	love.graphics.draw(ground_img, 0, GAME_HEIGHT - ground_img:getHeight())
+
 	push.finish()
 end

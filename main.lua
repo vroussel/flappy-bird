@@ -1,11 +1,18 @@
+local love = require("love")
+local push = require("push")
+
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
 
 local WINDOW_WIDTH = 1280
 local WINDOW_HEIGHT = 720
 
-local love = require("love")
-local push = require("push")
+local BACKGROUND_SCROLL_SPEED = 30
+local GROUND_SCROLL_SPEED = 60
+local BACKGROUND_LOOPING_POINT = 413
+
+local background_scroll = 0
+local ground_scroll = 0
 
 ---@type love.Image
 local background_img
@@ -36,13 +43,19 @@ function love.keypressed(key)
 	end
 end
 
-function love.update() end
+function love.update(dt)
+	background_scroll = background_scroll + BACKGROUND_SCROLL_SPEED * dt
+	ground_scroll = ground_scroll + GROUND_SCROLL_SPEED * dt
+	if background_scroll >= BACKGROUND_LOOPING_POINT then
+		background_scroll = 0
+	end
+end
 
 function love.draw()
 	push.start()
 
-	love.graphics.draw(background_img, 0, 0)
-	love.graphics.draw(ground_img, 0, GAME_HEIGHT - ground_img:getHeight())
+	love.graphics.draw(background_img, 0 - background_scroll, 0)
+	love.graphics.draw(ground_img, 0 - ground_scroll, GAME_HEIGHT - ground_img:getHeight())
 
 	push.finish()
 end

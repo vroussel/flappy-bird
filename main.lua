@@ -1,5 +1,6 @@
 local love = require("love")
 local push = require("push")
+local Bird = require("Bird")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
@@ -19,6 +20,9 @@ local background_img
 ---@type love.Image
 local ground_img
 
+---@type Bird
+local bird
+
 function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -29,6 +33,8 @@ function love.load()
 	push.setupScreen(GAME_WIDTH, GAME_HEIGHT, { upscale = "normal" })
 
 	math.randomseed(os.time())
+
+	bird = Bird:new()
 
 	love.window.setTitle("Flappy Bird")
 end
@@ -53,6 +59,8 @@ function love.draw()
 
 	love.graphics.draw(background_img, 0 - background_scroll, 0)
 	love.graphics.draw(ground_img, 0 - ground_scroll, GAME_HEIGHT - ground_img:getHeight())
+
+	bird:render()
 
 	push.finish()
 end

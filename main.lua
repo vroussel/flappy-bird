@@ -44,11 +44,8 @@ function love.keypressed(key)
 end
 
 function love.update(dt)
-	background_scroll = background_scroll + BACKGROUND_SCROLL_SPEED * dt
-	ground_scroll = ground_scroll + GROUND_SCROLL_SPEED * dt
-	if background_scroll >= BACKGROUND_LOOPING_POINT then
-		background_scroll = 0
-	end
+	background_scroll = (background_scroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
+	ground_scroll = (ground_scroll + GROUND_SCROLL_SPEED * dt) % GAME_WIDTH
 end
 
 function love.draw()

@@ -1,7 +1,7 @@
 local love = require("love")
 local push = require("push")
 local Bird = require("Bird")
-local Pipe = require("Pipe")
+local PipePair = require("PipePair")
 local keypressed = require("keypressed")
 local Timer = require("Timer")
 local utils = require("utils")
@@ -30,9 +30,9 @@ local ground_img
 local bird
 
 ---@type table
-local pipes = {}
+local pipe_pairs = {}
 ---@type Timer
-local pipes_spawn_timer
+local pipe_pairs_spawn_timer
 
 function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
@@ -46,7 +46,7 @@ function love.load()
 	math.randomseed(os.time())
 
 	bird = Bird:new()
-	pipes_spawn_timer = Timer:new(PIPES_SPAWN_DELAY)
+	pipe_pairs_spawn_timer = Timer:new(PIPES_SPAWN_DELAY)
 
 	love.window.setTitle("Flappy Bird")
 end
@@ -63,15 +63,15 @@ function love.keypressed(key, code)
 end
 
 local function spawn_pipes(dt)
-	pipes_spawn_timer:update(dt)
-	if pipes_spawn_timer:finished() then
-		table.insert(pipes, Pipe:new())
-		pipes_spawn_timer:reset()
+	pipe_pairs_spawn_timer:update(dt)
+	if pipe_pairs_spawn_timer:finished() then
+		table.insert(pipe_pairs, PipePair:new())
+		pipe_pairs_spawn_timer:reset()
 	end
 end
 
 local function cleanup_pipes()
-	for i, p in ipairs(pipes) do
+	for i, p in ipairs(pipe_pairs) do
 		if p.x + p.width < 0 then
 			table:remove(i)
 		else
@@ -90,9 +90,9 @@ function love.update(dt)
 	cleanup_pipes()
 	spawn_pipes(dt)
 
-	for _, p in ipairs(pipes) do
+	for _, p in ipairs(pipe_pairs) do
 		p:update(dt)
-		if utils.check_collision(bird, p) then
+		if p:collides_with(bird) then
 			love.event.quit()
 		end
 	end
@@ -106,7 +106,7 @@ function love.draw()
 
 	bird:render()
 
-	for _, p in ipairs(pipes) do
+	for _, p in ipairs(pipe_pairs) do
 		p:render()
 	end
 

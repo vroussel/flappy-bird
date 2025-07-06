@@ -1,6 +1,7 @@
 local love = require("love")
 local push = require("push")
 local Bird = require("Bird")
+local keypressed = require("keypressed")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
@@ -43,12 +44,10 @@ function love.resize(w, h)
 	push.resize(w, h)
 end
 
-function love.keypressed(key)
+function love.keypressed(key, code)
+	keypressed.notify(key, code)
 	if key == "q" then
 		love.event.quit()
-	end
-	if key == "space" then
-		bird:jump()
 	end
 end
 

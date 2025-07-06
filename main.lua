@@ -4,6 +4,7 @@ local Bird = require("Bird")
 local Pipe = require("Pipe")
 local keypressed = require("keypressed")
 local Timer = require("Timer")
+local utils = require("utils")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
@@ -91,6 +92,9 @@ function love.update(dt)
 
 	for _, p in ipairs(pipes) do
 		p:update(dt)
+		if utils.check_collision(bird, p) then
+			love.event.quit()
+		end
 	end
 end
 

@@ -6,8 +6,12 @@
 ---@field image love.Image
 local Bird = {}
 
-function Bird:new()
+local GRAVITY = 980
+local JUMP = 200
+
+function Bird:new(params)
 	local b = {}
+	params = params or {}
 	setmetatable(b, self)
 	self.__index = self
 
@@ -17,7 +21,18 @@ function Bird:new()
 	b.x = GAME_WIDTH / 2 - b.width / 2
 	b.y = GAME_HEIGHT / 2 - b.height / 2
 
+	b.dy = 0
+
 	return b
+end
+
+function Bird:update(dt)
+	self.dy = self.dy + GRAVITY * dt
+	self.y = self.y + self.dy * dt
+end
+
+function Bird:jump()
+	self.dy = -JUMP
 end
 
 function Bird:render()

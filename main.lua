@@ -47,11 +47,16 @@ function love.keypressed(key)
 	if key == "q" then
 		love.event.quit()
 	end
+	if key == "space" then
+		bird:jump()
+	end
 end
 
 function love.update(dt)
 	background_scroll = (background_scroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
 	ground_scroll = (ground_scroll + GROUND_SCROLL_SPEED * dt) % GAME_WIDTH
+
+	bird:update(dt)
 end
 
 function love.draw()

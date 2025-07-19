@@ -15,7 +15,7 @@ local BACKGROUND_SCROLL_SPEED = 30
 local GROUND_SCROLL_SPEED = 60
 local BACKGROUND_LOOPING_POINT = 413
 
-local PIPES_SPAWN_DELAY = 2
+local PIPES_SPAWN_DELAY = 2.5
 
 local background_scroll = 0
 local ground_scroll = 0

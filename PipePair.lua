@@ -8,20 +8,18 @@ local utils = require("utils")
 local Pipe = {}
 
 local SPRITE = love.graphics.newImage("assets/pipe.png")
+local PIPE_WIDTH = SPRITE:getWidth()
+local PIPE_HEIGHT = SPRITE:getHeight()
 
 function Pipe:new(x, y, side)
 	local p = {}
 	setmetatable(p, Pipe)
 	self.__index = self
 
-	p.width = SPRITE:getWidth()
-	p.height = SPRITE:getHeight()
 	p.x = x
-	if side == "up" then
-		p.y = y
-	else
-		p.y = y - p.height
-	end
+	p.y = y
+	p.width = PIPE_WIDTH
+	p.height = PIPE_HEIGHT
 
 	p.side = side
 
@@ -36,7 +34,7 @@ function Pipe:render()
 	if self.side == "up" then
 		love.graphics.draw(SPRITE, self.x, self.y)
 	else
-		love.graphics.draw(SPRITE, self.x, self.y, 0, 1, -1, 0, self.height)
+		love.graphics.draw(SPRITE, self.x, self.y + PIPE_HEIGHT, 0, 1, -1)
 	end
 end
 
@@ -57,10 +55,10 @@ function PipePair:new()
 	p.y = math.random(GAME_HEIGHT * 0.2, GAME_HEIGHT * 0.8)
 	p.gap = math.random(60, 90)
 
-	p.top_pipe = Pipe:new(p.x, p.y - p.gap / 2, "down")
+	p.top_pipe = Pipe:new(p.x, p.y - p.gap / 2 - PIPE_HEIGHT, "down")
 	p.bottom_pipe = Pipe:new(p.x, p.y + p.gap / 2, "up")
 
-	p.width = p.top_pipe.width
+	p.width = PIPE_WIDTH
 
 	return p
 end

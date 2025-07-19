@@ -10,6 +10,7 @@ local Pipe = {}
 local SPRITE = love.graphics.newImage("assets/pipe.png")
 local PIPE_WIDTH = SPRITE:getWidth()
 local PIPE_HEIGHT = SPRITE:getHeight()
+local HITBOX_DELTA = { left = 2, top = 2, right = 2, bottom = 2 }
 
 function Pipe:new(x, y, side)
 	local p = {}
@@ -28,6 +29,15 @@ end
 
 function Pipe:update(dt)
 	self.x = self.x - GAME_SCROLL_SPEED * dt
+end
+
+function Pipe:hitbox()
+	return {
+		x = self.x + HITBOX_DELTA.left,
+		y = self.y + HITBOX_DELTA.top,
+		width = self.width - HITBOX_DELTA.left - HITBOX_DELTA.right,
+		height = self.height - HITBOX_DELTA.top - HITBOX_DELTA.bottom,
+	}
 end
 
 function Pipe:render()

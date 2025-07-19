@@ -7,12 +7,12 @@ local Timer = require("Timer")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
+GAME_SCROLL_SPEED = 60
 
 local WINDOW_WIDTH = 1280
 local WINDOW_HEIGHT = 720
 
 local BACKGROUND_SCROLL_SPEED = 30
-local GROUND_SCROLL_SPEED = 60
 local BACKGROUND_LOOPING_POINT = 413
 
 local PIPES_SPAWN_DELAY = 2.5
@@ -82,7 +82,7 @@ end
 
 function love.update(dt)
 	background_scroll = (background_scroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
-	ground_scroll = (ground_scroll + GROUND_SCROLL_SPEED * dt) % GAME_WIDTH
+	ground_scroll = (ground_scroll + GAME_SCROLL_SPEED * dt) % GAME_WIDTH
 
 	bird:update(dt)
 

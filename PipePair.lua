@@ -7,8 +7,6 @@ local utils = require("utils")
 ---@field side 'up'|'down'
 local Pipe = {}
 
-local SCROLL_SPEED = 60
-
 local SPRITE = love.graphics.newImage("assets/pipe.png")
 
 function Pipe:new(x, y, side)
@@ -31,7 +29,7 @@ function Pipe:new(x, y, side)
 end
 
 function Pipe:update(dt)
-	self.x = self.x - SCROLL_SPEED * dt
+	self.x = self.x - GAME_SCROLL_SPEED * dt
 end
 
 function Pipe:render()

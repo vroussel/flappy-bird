@@ -4,7 +4,6 @@ local Bird = require("Bird")
 local PipePair = require("PipePair")
 local keypressed = require("keypressed")
 local Timer = require("Timer")
-local utils = require("utils")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243

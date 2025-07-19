@@ -76,7 +76,9 @@ function PipePair:render()
 end
 
 function PipePair:collides_with(obj)
-	return utils.check_collision(obj, self.top_pipe) or utils.check_collision(obj, self.bottom_pipe)
+	local tolerance = { x = 10, y = 0 }
+	return utils.check_collision(obj, self.top_pipe, tolerance)
+		or utils.check_collision(obj, self.bottom_pipe, tolerance)
 end
 
 return PipePair

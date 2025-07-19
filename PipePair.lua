@@ -55,7 +55,7 @@ function PipePair:new()
 
 	p.x = GAME_WIDTH
 	p.y = math.random(GAME_HEIGHT * 0.2, GAME_HEIGHT * 0.8)
-	p.gap = math.random(50, 100)
+	p.gap = math.random(60, 90)
 
 	p.top_pipe = Pipe:new(p.x, p.y - p.gap / 2, "down")
 	p.bottom_pipe = Pipe:new(p.x, p.y + p.gap / 2, "up")

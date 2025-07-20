@@ -4,6 +4,8 @@ local Bird = require("Bird")
 local PipePair = require("PipePair")
 local keypressed = require("keypressed")
 local Timer = require("Timer")
+local StateMachine = require("StateMachine")
+local PlayingState = require("states.PlayingState")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
@@ -33,6 +35,9 @@ local pipe_pairs = {}
 ---@type Timer
 local pipe_pairs_spawn_timer
 
+---@type StateMachine
+local state_machine
+
 function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -46,6 +51,12 @@ function love.load()
 
 	bird = Bird:new()
 	pipe_pairs_spawn_timer = Timer:new(PIPES_SPAWN_DELAY)
+
+	state_machine = StateMachine:new({
+		[PlayingState.name] = function()
+			return PlayingState:new()
+		end,
+	}, PlayingState.name)
 
 	love.window.setTitle("Flappy Bird")
 end
@@ -92,6 +103,7 @@ function love.update(dt)
 	for _, p in ipairs(pipe_pairs) do
 		p:update(dt)
 		if p:collides_with(bird) then
+			state_machine:change(HighscoreState.name)
 			love.event.quit()
 		end
 	end

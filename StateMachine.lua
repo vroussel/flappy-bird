@@ -1,6 +1,11 @@
 ---@class StateMachine
 ---@field states table<string, fun(...):State>
 ---@field current State
+---@field render function
+---@field update function
+---@field process_ai function
+---@field enter function
+---@field exit function
 local StateMachine = {}
 
 ---@param states table<string, fun(...): State>

@@ -54,6 +54,7 @@ end
 ---@field y number
 ---@field top_pipe Pipe
 ---@field bottom_pipe Pipe
+---@field width number
 local PipePair = {}
 
 function PipePair:new()

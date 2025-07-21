@@ -6,6 +6,7 @@
 ---@field process_ai function
 ---@field enter function
 ---@field exit function
+---@field keypressed function
 local StateMachine = {}
 
 ---@param states table<string, fun(...): State>
@@ -41,6 +42,10 @@ end
 
 function StateMachine:process_ai()
 	self.current:process_ai()
+end
+
+function StateMachine:keypressed(key, code)
+	self.current:keypressed(key, code)
 end
 
 return StateMachine

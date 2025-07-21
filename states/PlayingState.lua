@@ -50,6 +50,12 @@ function PlayingState:render()
 	end
 end
 
+function PlayingState:keypressed(key, _)
+	if key == "space" then
+		self.bird:jump()
+	end
+end
+
 ---@private
 function PlayingState:_spawn_pipes(dt)
 	self.pipe_spawn_timer:update(dt)

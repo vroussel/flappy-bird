@@ -1,6 +1,5 @@
 local love = require("love")
 local push = require("push")
-local keypressed = require("keypressed")
 local StateMachine = require("StateMachine")
 local PlayingState = require("states.PlayingState")
 
@@ -50,10 +49,10 @@ function love.resize(w, h)
 end
 
 function love.keypressed(key, code)
-	keypressed.notify(key, code)
 	if key == "q" then
 		love.event.quit()
 	end
+	state_machine:keypressed(key, code)
 end
 
 function love.update(dt)

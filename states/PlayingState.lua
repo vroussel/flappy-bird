@@ -1,6 +1,7 @@
 local Bird = require("Bird")
 local Timer = require("Timer")
 local PipePair = require("PipePair")
+local State = require("State")
 
 local PIPES_SPAWN_DELAY = 2.5
 
@@ -8,12 +9,12 @@ local PIPES_SPAWN_DELAY = 2.5
 ---@field bird Bird
 ---@field pipe_pairs PipePair[]
 ---@field pipe_spawn_timer Timer
-local PlayingState = {
+local PlayingState = State:new({
 	name = "playing",
-}
+})
 
 function PlayingState:new()
-	local s = {}
+	local s = State:new()
 	setmetatable(s, self)
 	self.__index = self
 

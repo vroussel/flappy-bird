@@ -5,6 +5,7 @@ local StateMachine = require("StateMachine")
 
 PlayingState = require("states.PlayingState")
 TitleScreenState = require("states.TitleScreenState")
+ScoreState = require("states.ScoreState")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
@@ -46,6 +47,9 @@ function love.load()
 		end,
 		[TitleScreenState.name] = function()
 			return TitleScreenState:new()
+		end,
+		[ScoreState.name] = function()
+			return ScoreState:new()
 		end,
 	}, TitleScreenState.name)
 

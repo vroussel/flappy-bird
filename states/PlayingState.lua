@@ -10,6 +10,7 @@ local PIPES_SPAWN_DELAY = 2.5
 ---@field bird Bird
 ---@field pipe_pairs PipePair[]
 ---@field pipe_spawn_timer Timer
+---@field private score number
 local PlayingState = State:new({
 	name = "playing",
 })
@@ -22,6 +23,7 @@ function PlayingState:new()
 	s.bird = Bird:new()
 	s.pipe_pairs = {}
 	s.pipe_spawn_timer = Timer:new(PIPES_SPAWN_DELAY)
+	s.score = 0
 
 	return s
 end
@@ -43,8 +45,11 @@ function PlayingState:update(dt)
 		p:update(dt)
 		if p:collides_with(self.bird) then
 			if self.state_machine then
-				self.state_machine:change(TitleScreenState.name)
+				self.state_machine:change(ScoreState.name, { score = self.score })
 			end
+		elseif not p.scored and self.bird.x > p.x + p.width then
+			p.scored = true
+			self.score = self.score + 1
 		end
 	end
 end

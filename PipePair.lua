@@ -55,6 +55,7 @@ end
 ---@field top_pipe Pipe
 ---@field bottom_pipe Pipe
 ---@field width number
+---@field scored boolean
 local PipePair = {}
 
 function PipePair:new()
@@ -66,6 +67,7 @@ function PipePair:new()
 	p.y = math.random(GAME_HEIGHT * 0.2, GAME_HEIGHT * 0.8)
 	p.gap = math.random(60, 90)
 	p.width = PIPE_WIDTH
+	p.scored = false
 
 	p.top_pipe = Pipe:new(p.x, p.y - p.gap / 2 - PIPE_HEIGHT, "down")
 	p.bottom_pipe = Pipe:new(p.x, p.y + p.gap / 2, "up")

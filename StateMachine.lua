@@ -16,6 +16,7 @@ function StateMachine:new(states, initial_state)
 	self.__index = self
 	s.states = states
 	s.current = states[initial_state]()
+	s.current:set_state_machine(s)
 	s.current:enter()
 
 	return s
@@ -27,6 +28,7 @@ function StateMachine:change(state_name, state_params)
 	local old_state = self.current
 	self.current:exit()
 	self.current = self.states[state_name]()
+	self.current:set_state_machine(self)
 	self.current:enter(state_params)
 	print("Changed state from " .. old_state.name .. " to " .. self.current.name)
 end

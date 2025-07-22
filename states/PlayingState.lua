@@ -3,6 +3,7 @@ local Timer = require("Timer")
 local PipePair = require("PipePair")
 local State = require("State")
 local keypressed = require("keypressed")
+local TitleScreenState = require("states.TitleScreenState")
 
 local PIPES_SPAWN_DELAY = 2.5
 
@@ -42,7 +43,9 @@ function PlayingState:update(dt)
 	for _, p in ipairs(self.pipe_pairs) do
 		p:update(dt)
 		if p:collides_with(self.bird) then
-			love.event.quit()
+			if self.state_machine then
+				self.state_machine:change(TitleScreenState.name)
+			end
 		end
 	end
 end

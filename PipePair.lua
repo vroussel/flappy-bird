@@ -77,6 +77,7 @@ end
 function PipePair:update(dt)
 	self.top_pipe:update(dt)
 	self.bottom_pipe:update(dt)
+	self.x = self.top_pipe.x
 end
 
 function PipePair:render()

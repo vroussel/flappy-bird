@@ -2,6 +2,7 @@ local Bird = require("Bird")
 local Timer = require("Timer")
 local PipePair = require("PipePair")
 local State = require("State")
+local keypressed = require("keypressed")
 
 local PIPES_SPAWN_DELAY = 2.5
 
@@ -30,6 +31,9 @@ function PlayingState:enter() end
 function PlayingState:exit() end
 
 function PlayingState:update(dt)
+	if keypressed.pressed("space") then
+		self.bird:jump()
+	end
 	self.bird:update(dt)
 
 	self:_cleanup_pipes()

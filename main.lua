@@ -49,17 +49,18 @@ function love.resize(w, h)
 	push.resize(w, h)
 end
 
-function love.keypressed(key, code)
-	keypressed.notify(key, code)
+function love.keypressed(key, _)
 	if key == "q" then
 		love.event.quit()
 	end
+	keypressed.push(key)
 end
 
 function love.update(dt)
 	background_scroll = (background_scroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
 	ground_scroll = (ground_scroll + GAME_SCROLL_SPEED * dt) % GAME_WIDTH
 	state_machine:update(dt)
+	keypressed.reset()
 end
 
 function love.draw()

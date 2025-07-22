@@ -1,4 +1,3 @@
-local keypressed = require("keypressed")
 ---@class Bird
 ---@field x number
 ---@field y number
@@ -23,10 +22,6 @@ function Bird:new(params)
 	b.y = GAME_HEIGHT / 2 - b.height / 2
 	b.dy = 0
 
-	keypressed.subscribe(function(key, code)
-		b:keypressed(key, code)
-	end)
-
 	return b
 end
 
@@ -41,12 +36,6 @@ end
 
 function Bird:render()
 	love.graphics.draw(self.image, self.x, self.y)
-end
-
-function Bird:keypressed(key)
-	if key == "space" then
-		self:jump()
-	end
 end
 
 return Bird

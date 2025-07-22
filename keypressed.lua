@@ -1,16 +1,18 @@
 local M = {}
 
----@type table
-local subscribers = {}
+---@type table<string, boolean>
+local keys = {}
 
-M.notify = function(key, scancode)
-	for _, fn in ipairs(subscribers) do
-		fn(key, scancode)
-	end
+function M.push(key)
+	keys[key] = true
 end
 
-M.subscribe = function(callback)
-	table.insert(subscribers, callback)
+function M.pressed(key)
+	return keys[key] or false
+end
+
+function M.reset()
+	keys = {}
 end
 
 return M

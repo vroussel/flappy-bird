@@ -6,6 +6,14 @@ local TitleScreenState = State:new({
 	name = "title",
 })
 
+function TitleScreenState:new()
+	local s = State:new()
+	setmetatable(s, self)
+	self.__index = self
+
+	return s
+end
+
 function TitleScreenState:update()
 	if keypressed.pressed("enter") or keypressed.pressed("return") then
 		if self.state_machine then

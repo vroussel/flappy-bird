@@ -25,6 +25,8 @@ local ground_img
 ---@type StateMachine
 local state_machine
 
+Fonts = {}
+
 function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -41,6 +43,13 @@ function love.load()
 			return PlayingState:new()
 		end,
 	}, PlayingState.name)
+
+	Fonts = {
+		small = love.graphics.newFont("font.ttf", 8),
+		medium = love.graphics.newFont("flappy.ttf", 14),
+		flappy = love.graphics.newFont("flappy.ttf", 28),
+		huge = love.graphics.newFont("flappy.ttf", 56),
+	}
 
 	love.window.setTitle("Flappy Bird")
 end

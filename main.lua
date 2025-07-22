@@ -3,6 +3,7 @@ local push = require("push")
 local keypressed = require("keypressed")
 local StateMachine = require("StateMachine")
 local PlayingState = require("states.PlayingState")
+local TitleScreenState = require("states.TitleScreenState")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
@@ -42,7 +43,10 @@ function love.load()
 		[PlayingState.name] = function()
 			return PlayingState:new()
 		end,
-	}, PlayingState.name)
+		[TitleScreenState.name] = function()
+			return TitleScreenState:new()
+		end,
+	}, TitleScreenState.name)
 
 	Fonts = {
 		small = love.graphics.newFont("font.ttf", 8),

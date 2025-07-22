@@ -2,8 +2,9 @@ local love = require("love")
 local push = require("push")
 local keypressed = require("keypressed")
 local StateMachine = require("StateMachine")
-local PlayingState = require("states.PlayingState")
-local TitleScreenState = require("states.TitleScreenState")
+
+PlayingState = require("states.PlayingState")
+TitleScreenState = require("states.TitleScreenState")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243

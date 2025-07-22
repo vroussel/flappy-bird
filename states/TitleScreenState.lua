@@ -1,6 +1,5 @@
 local State = require("State")
 local keypressed = require("keypressed")
-local PlayingState = require("states.PlayingState")
 
 ---@class TitleScreenState: State
 local TitleScreenState = State:new({

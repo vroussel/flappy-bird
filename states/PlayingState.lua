@@ -3,7 +3,6 @@ local Timer = require("Timer")
 local PipePair = require("PipePair")
 local State = require("State")
 local keypressed = require("keypressed")
-local TitleScreenState = require("states.TitleScreenState")
 
 local PIPES_SPAWN_DELAY = 2.5
 

@@ -19,6 +19,7 @@ local BACKGROUND_LOOPING_POINT = 413
 
 local background_scroll = 0
 local ground_scroll = 0
+local scrolling_enabled = true
 
 ---@type love.Image
 local background_img
@@ -75,8 +76,10 @@ function love.keypressed(key, _)
 end
 
 function love.update(dt)
-	background_scroll = (background_scroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
-	ground_scroll = (ground_scroll + GAME_SCROLL_SPEED * dt) % GAME_WIDTH
+	if scrolling_enabled then
+		background_scroll = (background_scroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
+		ground_scroll = (ground_scroll + GAME_SCROLL_SPEED * dt) % GAME_WIDTH
+	end
 	state_machine:update(dt)
 	keypressed.reset()
 end
@@ -89,4 +92,8 @@ function love.draw()
 	state_machine:render()
 
 	push.finish()
+end
+
+function SetScrolling(v)
+	scrolling_enabled = v
 end

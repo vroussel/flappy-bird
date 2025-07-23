@@ -28,9 +28,13 @@ function PlayingState:new()
 	return s
 end
 
-function PlayingState:enter() end
+function PlayingState:enter()
+	SetScrolling(true)
+end
 
-function PlayingState:exit() end
+function PlayingState:exit()
+	SetScrolling(false)
+end
 
 function PlayingState:update(dt)
 	if keypressed.pressed("space") then

@@ -65,6 +65,7 @@ function PlayingState:render()
 		p:render()
 	end
 
+	love.graphics.setFont(Fonts.medium)
 	love.graphics.print("Score: " .. self.score, 10, 10)
 end
 

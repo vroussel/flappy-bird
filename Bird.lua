@@ -7,7 +7,7 @@
 local Bird = {}
 
 local GRAVITY = 980
-local JUMP = 200
+local JUMP = 250
 
 function Bird:new(params)
 	local b = {}

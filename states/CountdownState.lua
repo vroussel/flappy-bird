@@ -13,6 +13,7 @@ function CountdownState:new()
 	self.__index = self
 
 	s.timer = Timer:new(3)
+	s.timer:set_time_speed(1.5)
 
 	return s
 end

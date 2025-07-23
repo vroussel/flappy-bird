@@ -17,7 +17,7 @@ end
 function TitleScreenState:update()
 	if keypressed.pressed("enter") or keypressed.pressed("return") then
 		if self.state_machine then
-			self.state_machine:change(PlayingState.name)
+			self.state_machine:change(CountdownState.name)
 		end
 	end
 end

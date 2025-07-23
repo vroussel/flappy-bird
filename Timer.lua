@@ -26,4 +26,8 @@ function Timer:finished()
 	return self.elapsed >= self.duration
 end
 
+function Timer:remaining()
+	return math.max(0, self.duration - self.elapsed)
+end
+
 return Timer

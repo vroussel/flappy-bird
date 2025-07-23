@@ -6,6 +6,7 @@ local StateMachine = require("StateMachine")
 PlayingState = require("states.PlayingState")
 TitleScreenState = require("states.TitleScreenState")
 ScoreState = require("states.ScoreState")
+CountdownState = require("states.CountdownState")
 
 GAME_WIDTH = 432
 GAME_HEIGHT = 243
@@ -51,6 +52,9 @@ function love.load()
 		end,
 		[ScoreState.name] = function()
 			return ScoreState:new()
+		end,
+		[CountdownState.name] = function()
+			return CountdownState:new()
 		end,
 	}, TitleScreenState.name)
 

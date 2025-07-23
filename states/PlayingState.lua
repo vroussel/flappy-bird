@@ -64,6 +64,8 @@ function PlayingState:render()
 	for _, p in ipairs(self.pipe_pairs) do
 		p:render()
 	end
+
+	love.graphics.print("Score: " .. self.score, 10, 10)
 end
 
 ---@private

@@ -29,7 +29,7 @@ function ScoreState:update()
 	end
 end
 function ScoreState:render()
-	love.graphics.setFont(Fonts.huge)
+	love.graphics.setFont(Fonts.flappy)
 	love.graphics.printf(
 		"Score: " .. self.score,
 		0,

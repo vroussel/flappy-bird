@@ -50,10 +50,13 @@ function PlayingState:update(dt)
 		if p:collides_with(self.bird) then
 			if self.state_machine then
 				self.state_machine:change(ScoreState.name, { score = self.score })
+				Sounds["explosion"]:play()
+				Sounds["hurt"]:play()
 			end
 		elseif not p.scored and self.bird.x > p.x + p.width then
 			p.scored = true
 			self.score = self.score + 1
+			Sounds["score"]:play()
 		end
 	end
 end

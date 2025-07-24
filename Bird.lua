@@ -32,6 +32,7 @@ end
 
 function Bird:jump()
 	self.dy = -JUMP
+	Sounds["jump"]:play()
 end
 
 function Bird:render()

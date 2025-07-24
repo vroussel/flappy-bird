@@ -31,6 +31,8 @@ local ground_img
 local state_machine
 
 Fonts = {}
+---@type [love.Source]
+Sounds = {}
 
 function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
@@ -64,6 +66,18 @@ function love.load()
 		flappy = love.graphics.newFont("fonts/flappy.ttf", 28),
 		huge = love.graphics.newFont("fonts/flappy.ttf", 56),
 	}
+
+	Sounds = {
+		jump = love.audio.newSource("sounds/jump.wav", "static"),
+		explosion = love.audio.newSource("sounds/explosion.wav", "static"),
+		hurt = love.audio.newSource("sounds/hurt.wav", "static"),
+		score = love.audio.newSource("sounds/score.wav", "static"),
+		-- https://freesound.org/people/xsgianni/sounds/388079/
+		music = love.audio.newSource("sounds/marios_way.mp3", "static"),
+	}
+
+	Sounds["music"]:setLooping(true)
+	Sounds["music"]:play()
 
 	love.window.setTitle("Flappy Bird")
 end

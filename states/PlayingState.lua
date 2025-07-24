@@ -4,7 +4,9 @@ local PipePair = require("PipePair")
 local State = require("State")
 local keypressed = require("keypressed")
 
-local PIPES_SPAWN_DELAY = 2.5
+local function random_spawn_delay()
+	return math.random() + 2
+end
 
 ---@class PlayingState: State
 ---@field bird Bird
@@ -22,7 +24,7 @@ function PlayingState:new()
 
 	s.bird = Bird:new()
 	s.pipe_pairs = {}
-	s.pipe_spawn_timer = Timer:new(PIPES_SPAWN_DELAY)
+	s.pipe_spawn_timer = Timer:new(random_spawn_delay())
 	s.score = 0
 
 	return s
@@ -77,7 +79,7 @@ function PlayingState:_spawn_pipes(dt)
 	self.pipe_spawn_timer:update(dt)
 	if self.pipe_spawn_timer:finished() then
 		table.insert(self.pipe_pairs, PipePair:new())
-		self.pipe_spawn_timer:reset()
+		self.pipe_spawn_timer = Timer:new(random_spawn_delay())
 	end
 end
 

@@ -30,6 +30,7 @@ local ground_img
 ---@type StateMachine
 local state_machine
 
+---@type [love.Font]
 Fonts = {}
 ---@type [love.Source]
 Sounds = {}

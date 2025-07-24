@@ -37,7 +37,7 @@ function PlayingState:exit()
 end
 
 function PlayingState:update(dt)
-	if keypressed.pressed("space") then
+	if keypressed.pressed("space") or keypressed.mouse_pressed(1) then
 		self.bird:jump()
 	end
 	self.bird:update(dt)

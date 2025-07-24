@@ -94,6 +94,10 @@ function love.keypressed(key, _)
 	keypressed.push(key)
 end
 
+function love.mousepressed(_, _, button)
+	keypressed.mouse_push(button)
+end
+
 function love.update(dt)
 	if scrolling_enabled then
 		background_scroll = (background_scroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT

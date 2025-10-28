@@ -47,13 +47,21 @@ function PlayingState:update(dt)
 	self:_cleanup_pipes()
 	self:_spawn_pipes(dt)
 
+	local function gameover()
+		self.state_machine:change(ScoreState.name, { score = self.score })
+		Sounds["explosion"]:play()
+		Sounds["hurt"]:play()
+	end
+
+	if self.bird.y > GroundHeight() then
+		gameover()
+		return
+	end
 	for _, p in ipairs(self.pipe_pairs) do
 		p:update(dt)
 		if p:collides_with(self.bird) then
 			if self.state_machine then
-				self.state_machine:change(ScoreState.name, { score = self.score })
-				Sounds["explosion"]:play()
-				Sounds["hurt"]:play()
+				gameover()
 			end
 		elseif not p.scored and self.bird.x > p.x + p.width then
 			p.scored = true

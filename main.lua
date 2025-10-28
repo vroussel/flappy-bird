@@ -120,3 +120,7 @@ end
 function SetScrolling(v)
 	scrolling_enabled = v
 end
+
+function GroundHeight()
+	return GAME_HEIGHT - ground_img:getHeight()
+end

@@ -124,3 +124,7 @@ end
 function GroundHeight()
 	return GAME_HEIGHT - ground_img:getHeight()
 end
+
+function RunningFromWeb()
+	return love.system.getOS() == "Web"
+end
